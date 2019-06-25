@@ -36,7 +36,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         // 配置Token的存储方式
-        endpoints.tokenStore(tokenStore())
+        endpoints.tokenStore(jwtTokenStore())
                 // 读取用户的验证信息
                 .userDetailsService(userDetailsService);
     }
