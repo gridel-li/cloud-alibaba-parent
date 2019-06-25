@@ -26,6 +26,7 @@
         <module>cloud-alibaba-common</module>
         <module>cloud-alibaba-core</module>
         <module>cloud-alibaba-pojo</module>
+        <module>nacos</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

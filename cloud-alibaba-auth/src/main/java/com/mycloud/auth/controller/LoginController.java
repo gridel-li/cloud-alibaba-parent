@@ -21,4 +21,9 @@ public class LoginController {
         return "index";
     }
 
+
+    @GetMapping("/ffff")
+    public String ffff() {
+        return "ffff";
+    }
 }
