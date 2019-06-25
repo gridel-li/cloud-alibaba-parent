@@ -1,0 +1,33 @@
+auth-server: http://localhost:9000
+
+
+server:
+  port: 8082
+  servlet:
+    context-path: /manager
+spring:
+  application:
+    name: web-manager
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+        port: 8719
+feign:
+  sentinel:
+    enabled: true
+
+
+security:
+  oauth2:
+    client:
+      client-id: manager
+      client-secret: managerUser
+      access-token-uri: ${auth-server}/oauth/token
+      user-authorization-uri: ${auth-server}/oauth/authorize
+    resource:
+      jwt:
+        key-uri: ${auth-server}/oauth/token_key

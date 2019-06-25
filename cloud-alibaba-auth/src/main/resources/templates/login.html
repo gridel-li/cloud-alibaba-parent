@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>9000login</title>
+
+</head>
+<body>
+
+<div>
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Username">
+        </div>
+        <div>
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Password">
+        </div>
+        <button type="submit">登录</button>
+    </form>
+</div>
+</body>
+</html>
