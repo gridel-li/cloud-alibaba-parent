@@ -23,6 +23,9 @@
         <module>cloud-alibaba-manager</module>
         <module>cloud-alibaba-user</module>
         <module>cloud-alibaba-auth</module>
+        <module>cloud-alibaba-common</module>
+        <module>cloud-alibaba-core</module>
+        <module>cloud-alibaba-pojo</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
