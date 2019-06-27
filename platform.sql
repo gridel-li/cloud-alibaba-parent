@@ -10,10 +10,34 @@ Target Server Type    : MYSQL
 Target Server Version : 50724
 File Encoding         : 65001
 
-Date: 2019-06-25 09:15:44
+Date: 2019-06-27 11:55:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for oauth_access_token
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_access_token`;
+CREATE TABLE `oauth_access_token` (
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `token_id` varchar(255) DEFAULT NULL,
+  `token` blob,
+  `authentication_id` varchar(255) DEFAULT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
+  `client_id` varchar(255) DEFAULT NULL,
+  `authentication` blob,
+  `refresh_token` varchar(255) DEFAULT NULL,
+  KEY `token_id_index` (`token_id`),
+  KEY `authentication_id_index` (`authentication_id`),
+  KEY `user_name_index` (`user_name`),
+  KEY `client_id_index` (`client_id`),
+  KEY `refresh_token_index` (`refresh_token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of oauth_access_token
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for oauth_client_details
@@ -37,8 +61,39 @@ CREATE TABLE `oauth_client_details` (
 -- ----------------------------
 -- Records of oauth_client_details
 -- ----------------------------
-INSERT INTO `oauth_client_details` VALUES ('manager', null, '$2a$10$.5x.C7xEbIm7PUTR.rKecuQnhBROkSWaHRdzk9/XgugrBdHC4ynqG', 'all', 'authorization_code,refresh_token,password', 'http://localhost:8082/manager/login', null, '7200', null, null, 'true');
-INSERT INTO `oauth_client_details` VALUES ('OrderManagement', null, '$2a$10$8yVwRGY6zB8wv5o0kRgD0ep/HVcvtSZUZsYu/586Egxc1hv3cI9Q6', 'all', 'authorization_code,refresh_token', 'http://localhost:8082/manager/login', null, '7200', null, null, 'true');
+INSERT INTO `oauth_client_details` VALUES ('manager', null, '$2a$10$.5x.C7xEbIm7PUTR.rKecuQnhBROkSWaHRdzk9/XgugrBdHC4ynqG', 'all', 'authorization_code,refresh_token,password,implicit', 'http://localhost:8848', null, '7200', '50000', null, 'true');
+INSERT INTO `oauth_client_details` VALUES ('OrderManagement', null, '$2a$10$8yVwRGY6zB8wv5o0kRgD0ep/HVcvtSZUZsYu/586Egxc1hv3cI9Q6', 'all', 'authorization_code,refresh_token', 'http://localhost:8082/manager/login', null, '7200', '50000', null, 'true');
+
+-- ----------------------------
+-- Table structure for oauth_code
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_code`;
+CREATE TABLE `oauth_code` (
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `code` varchar(255) DEFAULT NULL,
+  `authentication` blob,
+  KEY `code_index` (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of oauth_code
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for oauth_refresh_token
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_refresh_token`;
+CREATE TABLE `oauth_refresh_token` (
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `token_id` varchar(255) DEFAULT NULL,
+  `token` blob,
+  `authentication` blob,
+  KEY `token_id_index` (`token_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of oauth_refresh_token
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_permission
