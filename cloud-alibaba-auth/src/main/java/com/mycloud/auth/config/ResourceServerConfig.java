@@ -21,8 +21,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http.csrf().disable()//禁用了csrf（跨站请求伪造）功能
                 .authorizeRequests()//限定签名成功的请求
                 //必须认证过后才可以访问;注意：hasAnyRole 会默认加上ROLE_前缀，而hasAuthority不会加前缀
-                .antMatchers("/api/**").hasAnyRole("user") // 在角色过滤的时候需要注意user角色需要加角色前缀
-                .antMatchers("/ffff").authenticated()
+                //.antMatchers("/api/**").hasAuthority("user") // 在角色过滤的时候需要注意user角色需要加角色前缀
+                .antMatchers("/api/**").authenticated()
+                .antMatchers("/test/**").permitAll()
                 // 免验证请求
                 .antMatchers("/oauth/**").permitAll();
     }

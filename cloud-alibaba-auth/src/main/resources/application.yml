@@ -58,8 +58,6 @@ spring:
 
   jpa:
     show-sql: true
-  session:
-    store-type: redis
   redis:
     database: 0
     host: 111.231.110.198

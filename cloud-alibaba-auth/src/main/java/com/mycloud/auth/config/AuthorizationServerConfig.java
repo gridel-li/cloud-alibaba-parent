@@ -2,7 +2,6 @@ package com.mycloud.auth.config;
 
 
 import com.mycloud.auth.constant.Const;
-import com.mycloud.auth.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -33,18 +32,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
     @Autowired
-    private MyUserDetailsService userDetailsService;
-    @Autowired
     RedisConnectionFactory redisConnectionFactory;
     @Autowired
     private DataSource dataSource;
+
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        // 配置Token的存储方式
-        endpoints.authenticationManager(authenticationManager);
-        endpoints.tokenStore(jwtTokenStore());
-                // 读取用户的验证信息
-        endpoints.userDetailsService(userDetailsService);
+        endpoints.tokenStore(jwtTokenStore())
+                .accessTokenConverter(jwtAccessTokenConverter())
+                .authenticationManager(authenticationManager);
+
     }
 
     @Override
@@ -53,12 +50,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 // 对获取Token的请求不再拦截
                 .tokenKeyAccess("permitAll()")
                 // 验证获取Token的验证信息
-                .checkTokenAccess("isAuthenticated()");
+                .checkTokenAccess("permitAll()");
     }
 
 
     /**
      * 客户端配置
+     *
      * @param clients
      * @throws Exception
      */

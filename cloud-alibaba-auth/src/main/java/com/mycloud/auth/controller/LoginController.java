@@ -16,14 +16,4 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
-
-
-    @GetMapping("/ffff")
-    public String ffff() {
-        return "ffff";
-    }
 }
