@@ -3,10 +3,8 @@ package com.mycloud.auth.controller;
 import com.mycloud.auth.domain.MyUser;
 import com.mycloud.auth.exception.BizException;
 import com.mycloud.auth.utils.JwtUtil;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author liyingjie
@@ -17,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/test")
 public class TestController {
-    @GetMapping("/aaa")
+    @PostMapping("/aaa")
     public String aaa() throws BizException {
         MyUser user = JwtUtil.getUser();
         if (null!=user){
@@ -35,4 +33,8 @@ public class TestController {
         return "success";
     }
 
+
+    public static void main(String[] args) {
+        System.out.println(new BCryptPasswordEncoder().encode("123456"));
+    }
 }
