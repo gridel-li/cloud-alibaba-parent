@@ -14,10 +14,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
-import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
@@ -83,19 +79,5 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return converter;
     }
 
-    @Bean
-    public TokenStore tokenStore() {
-
-        //使用内存中的 token store
-//        return new InMemoryTokenStore();
-
-        //使用Jdbctoken store
-        return new JdbcTokenStore(dataSource);
-    }
-
-    @Bean
-    public ClientDetailsService clientDetails() {
-        return new JdbcClientDetailsService(dataSource);
-    }
 
 }
